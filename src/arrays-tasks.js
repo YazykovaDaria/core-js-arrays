@@ -431,8 +431,10 @@ function getFalsyValuesCount(arr) {
  *                              [0,0,0,1,0],
  *                              [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  return Array.from({ length: n }, (_value, index) =>
+    Array.from({ length: n }, (_val, i) => (index === i ? 1 : 0))
+  );
 }
 
 /**
@@ -446,8 +448,13 @@ function getIdentityMatrix(/* n */) {
  *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
-function getIndicesOfOddNumbers(/* numbers */) {
-  throw new Error('Not implemented');
+function getIndicesOfOddNumbers(numbers) {
+  return numbers.reduce((acc, value, i) => {
+    if (value % 2 !== 0) {
+      acc.push(i);
+    }
+    return acc;
+  }, []);
 }
 
 /**
@@ -460,8 +467,11 @@ function getIndicesOfOddNumbers(/* numbers */) {
  *    getHexRGBValues([ 0, 255, 16777215]) => [ '#000000', '#0000FF', '#FFFFFF' ]
  *    getHexRGBValues([]) => []
  */
-function getHexRGBValues(/* arr */) {
-  throw new Error('Not implemented');
+function getHexRGBValues(arr) {
+  return arr.map((value) => {
+    const strHex = value.toString(16).padStart(6, '0');
+    return `#${strHex.toUpperCase()}`;
+  });
 }
 
 /**
@@ -478,8 +488,9 @@ function getHexRGBValues(/* arr */) {
  *   getMaxItems([ 10, 2, 7, 5, 3, -5 ], 3) => [ 10, 7, 5 ]
  *   getMaxItems([ 10, 10, 10, 10 ], 3) => [ 10, 10, 10 ]
  */
-function getMaxItems(/* arr, n */) {
-  throw new Error('Not implemented');
+function getMaxItems(arr, n) {
+  const sortedArr = arr.sort((a, b) => b - a);
+  return sortedArr.slice(0, n);
 }
 
 /**
@@ -494,8 +505,13 @@ function getMaxItems(/* arr, n */) {
  *    findCommonElements(['a', 'b', 'c'], ['b', 'c', 'd']) => [ 'b', 'c' ]
  *    findCommonElements([1, 2, 3], ['a', 'b', 'c']) => []
  */
-function findCommonElements(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+function findCommonElements(arr1, arr2) {
+  return arr1.reduce((acc, value) => {
+    if (arr2.includes(value)) {
+      acc.push(value);
+    }
+    return acc;
+  }, []);
 }
 
 /**
